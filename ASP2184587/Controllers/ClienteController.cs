@@ -36,7 +36,7 @@ namespace ASP2184587.Controllers
             {
                 using (var db = new inventarioEntities1())
                 {
-                    cliente.nombre = clienteController.HashSHA1(cliente.nombre);
+                   
                     db.cliente.Add(cliente);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -50,19 +50,7 @@ namespace ASP2184587.Controllers
             }
         }
 
-        public static string HashSHA1(string value)
-        {
-            var sha1 = System.Security.Cryptography.SHA1.Create();
-            var inputBytes = Encoding.ASCII.GetBytes(value);
-            var hash = sha1.ComputeHash(inputBytes);
-
-            var sb = new StringBuilder();
-            for (var i = 0; i < hash.Length; i++)
-            {
-                sb.Append(hash[i].ToString("X2"));
-            }
-            return sb.ToString();
-        }
+        
 
         public ActionResult Details(int id)
         {
